@@ -14,7 +14,7 @@ export default function Button({ color, size, onClick, disabled, children }) {
 
   return (
     <button
-      className="button"
+      className="bg-red-100"
       style={styles}
       onClick={onClick}
       disabled={disabled}
