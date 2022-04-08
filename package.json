@@ -24,7 +24,7 @@
     "styleguide:build": "styleguidist build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:tailwind": "npx tailwindcss -i style/tailwind.css -o style/output.css"
+    "build:tailwind": "npx tailwindcss -i style/tailwind.css -o style/output.css --watch"
   },
   "eslintConfig": {
     "extends": [
