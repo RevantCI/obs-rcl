@@ -18,6 +18,7 @@ module.exports = {
   styles,
   theme,
   version,
+  require: [path.join(__dirname, 'style/output.css')],
   webpackConfig: {
     module: {
       rules: [
