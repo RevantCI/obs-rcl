@@ -2,27 +2,9 @@
 
 ```js
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-
-import Button from "@material-ui/core/Button";
 import Reference from "./Reference";
-import Grid from "@material-ui/core/Grid";
 import MdToJson from "../MdToJson/MdToJson";
 
-const useStyles = makeStyles((theme) => ({
-  title: {
-    fontSize: "25px",
-  },
-  text: {
-    fontSize: "16px",
-    direction: "rtl",
-  },
-  input: {
-    display: "none",
-  },
-}));
-
-const classes = useStyles();
 const [data, setData] = useState();
 const [showFileName, setShowFileName] = useState("");
 
@@ -36,30 +18,25 @@ const loadMdText = (event) => {
   reader.readAsText(file);
 };
 <>
-  <Grid container spacing={2}>
-    <Grid item xs={6}>
+  <div className="grid grid-cols-2">
+    <div className="p-2 ">
+      <label htmlFor="raised-button-file">
+        <span className="border-2 p-2 rounded-md bg-blue-700 font-serif text-white uppercase">
+          select md file
+        </span>
+      </label>
       <input
         id="raised-button-file"
         type="file"
         accept=".md"
         onChange={loadMdText}
-        className={classes.input}
+        className="hidden"
       />
-      <label htmlFor="raised-button-file">
-        <Button
-          variant="contained"
-          color="primary"
-          size="small"
-          component="span"
-        >
-          select md file
-        </Button>
-      </label>
-    </Grid>
-    <Grid item xs={3}>
+    </div>
+    <div className="p-2 m-2">
       <span>{showFileName}</span>
-    </Grid>
-  </Grid>
-  <Reference title={classes.title} text={classes.text} data={data} />
+    </div>
+  </div>
+  <Reference data={data} />
 </>;
 ```

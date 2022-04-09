@@ -1,7 +1,6 @@
 Called by `MdToJson` to passed md string and return json object
 
 ```jsx
-import { Grid } from "@material-ui/core";
 import MdToJson from "../MdToJson/MdToJson";
 
 const json = MdToJson(
@@ -9,18 +8,18 @@ const json = MdToJson(
 );
 <>
   {json.map((story) => (
-    <Grid container key={story.id}>
+    <div className="container" key={story.id}>
       {story.title && (
-        <Grid item xs={12}>
+        <div className="text-2xl mb-3 border-2 bg-gray-400 p-2 font-serif">
           <h1>{story.title}</h1>
-        </Grid>
+        </div>
       )}
       {story.end && (
-        <Grid item xs={12}>
+        <div className="text-xl font-serif">
           <h1>{story.end}</h1>
-        </Grid>
+        </div>
       )}
-    </Grid>
+    </div>
   ))}
 </>;
 ```

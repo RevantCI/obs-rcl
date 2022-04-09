@@ -1,43 +1,9 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Grid, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import MdToJson from "../MdToJson/MdToJson";
 
-const useStyles = makeStyles((theme) => ({
-  dialogTitle: {
-    backgroundColor: "#eee",
-  },
-  content: {
-    width: "100%",
-  },
-  controlsDiv: {
-    marginTop: "10px",
-  },
-  controls: {
-    border: "1px solid grey",
-    width: "50vw",
-    textAlign: "left",
-    padding: "10px",
-  },
-  obrRow: {
-    margin: "3px",
-    border: "2px solid #eee",
-    borderRadius: "10px",
-  },
-  img: {
-    width: "250px",
-    borderRadius: "10px",
-  },
-  input: {
-    display: "none",
-  },
-}));
-
 const Reference = (props) => {
-  const { title, text, data } = props;
-  console.log(typeof title);
-  const classes = useStyles();
+  const { data } = props;
   const [obsStory, setObsStory] = useState(null);
 
   useEffect(() => {
@@ -51,28 +17,30 @@ const Reference = (props) => {
       {obsStory !== null ? (
         <>
           {obsStory.map((story) => (
-            <Grid container key={story.id}>
+            <div className="container" key={story.id}>
               {story.title && (
-                <Grid item xs={12}>
-                  <h1 className={title}>{story.title}</h1>
-                </Grid>
+                <div className="text-2xl border-2 bg-gray-300 border-solid p-2 font-serif">
+                  <h1>{story.title}</h1>
+                </div>
               )}
               {story.text && (
-                <Grid container spacing={2} className={classes.obrRow}>
-                  <Grid item xs={5}>
-                    <img src={story.img} alt="" className={classes.img} />
-                  </Grid>
-                  <Grid item xs={7} className={text}>
-                    {story.text}
-                  </Grid>
-                </Grid>
+                <div className="grid grid-cols-2 m-4 p-4 border-solid border-2 border-gray-200 rounded-md ">
+                  <div className="w-9/12 flex items-center ">
+                    <img
+                      src={story.img}
+                      alt="Avatar"
+                      className="rounded-lg border-2"
+                    />
+                  </div>
+                  <div className="text-justify p-2 text-sm">{story.text}</div>
+                </div>
               )}
               {story.end && (
-                <Grid item xs={12}>
+                <div className="text-xl bg-gray-300 border-2 p-2 font-serif">
                   <h1>{story.end}</h1>
-                </Grid>
+                </div>
               )}
-            </Grid>
+            </div>
           ))}
         </>
       ) : (
