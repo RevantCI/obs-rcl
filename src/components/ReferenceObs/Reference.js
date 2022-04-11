@@ -14,10 +14,7 @@ const Reference = ({ data }) => {
       {data ? (
         <div className="container">
           {obsStory?.title && (
-            <div
-              className="text-2xl border-2 bg-gray-300 border-solid p-2 font-serif"
-              key={obsStory.title}
-            >
+            <div className="text-2xl border-2 bg-gray-300 border-solid p-2 font-serif">
               <h1>{obsStory.title}</h1>
             </div>
           )}
