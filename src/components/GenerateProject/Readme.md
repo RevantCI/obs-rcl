@@ -4,6 +4,7 @@ Helper function to generate the 50 Files for OBS
 
 ```jsx
 import { useState, useEffect } from "react";
+import Reference from "../Reference/Reference";
 
 const [storyId, setStoryId] = useState(1);
 const [imageUrl, setImageUrl] = useState("");
@@ -47,14 +48,7 @@ const setUrl = (event) => {
       <button type="button" onClick={downloadText}>
         Download
       </button>
-      <div>
-        <textarea
-          rows="20"
-          style={{ width: "100%" }}
-          value={stories.length > 0 ? stories[storyId - 1].story : ""}
-          readOnly
-        ></textarea>
-      </div>
+      <Reference data={stories[storyId - 1].story} />
     </div>
   ) : (
     "Generating Stories"

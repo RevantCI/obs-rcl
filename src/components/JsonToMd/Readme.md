@@ -2,13 +2,9 @@ Generate OBS Files Json
 
 ```jsx
 import OBSData from "../../store/OBSData.json";
+import Reference from "../Reference/Reference";
 
-const json = JsonToMd(OBSData[0],"");
+const data = JsonToMd(OBSData[0],"");
 
-<textarea
-rows="20"
-style={{ width: "100%" }}
-value={json}
-readOnly
-></textarea>
+<Reference data={data}/>
 ```

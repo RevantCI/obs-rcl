@@ -21,14 +21,14 @@ const Reference = ({ data }) => {
           {obsStory?.story &&
             obsStory.story.map(
               (story) =>
-                story.text && (
+                story.url && (
                   <div
                     className="grid grid-cols-2 m-4 p-4 border-solid border-2 border-gray-200 rounded-md "
-                    key={story.text}
+                    key={story.url}
                   >
                     <div className="w-9/12 flex items-center ">
                       <img
-                        src={story.img}
+                        src={story.url}
                         alt="Avatar"
                         className="rounded-lg border-2"
                       />
