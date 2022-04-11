@@ -1,43 +1,44 @@
 import PropTypes from "prop-types";
 
 const MdToJson = (data) => {
-  //read only md files and put at js variables
-  //convert md files into json array object
-  //render stories from json array object
-  const stories = [];
-  let id = 1;
+  //convert md file text into json object
+  //render story from json array object
+  let story = [];
+  let id = 0;
   const allLines = data.split(/\r\n|\n/);
+  let title = "";
+  let end = "";
+  let error = "";
   // Reading line by line
-  allLines.forEach((line) => {
-    if (line) {
-      if (line.match(/^#/gm)) {
-        const hash = line.match(/# (.*)/);
-        stories.push({
-          id,
-          title: hash[1],
-        });
-        id += 1;
-      } else if (line.match(/^_/gm)) {
-        const underscore = line.match(/_(.*)_/);
-        stories.push({
-          id,
-          end: underscore[1],
-        });
-        id += 1;
-      } else if (line.match(/^!/gm)) {
-        const imgUrl = line.match(/\((.*)\)/);
-        stories.push({
-          id,
-          img: imgUrl[1],
-        });
-      } else {
-        const objIndex = stories.findIndex((obj) => obj.id === id);
-        stories[objIndex].text = line;
-        id += 1;
+  try {
+    allLines.forEach((line) => {
+      if (line) {
+        if (line.match(/^#/gm)) {
+          const hash = line.match(/# (.*)/);
+          title = hash[1];
+        } else if (line.match(/^_/gm)) {
+          const underscore = line.match(/_(.*)_/);
+          end = underscore[1];
+        } else if (line.match(/^!/gm)) {
+          id += 1;
+          const imgUrl = line.match(/\((.*)\)/);
+          story.push({
+            id,
+            img: imgUrl[1],
+          });
+        } else {
+          story[id - 1].text = line;
+        }
       }
-    }
-  });
-  return stories;
+    });
+  } catch (e) {
+    error = "Error parsing OBS md file text";
+    title = "";
+    end = "";
+    story = [];
+  }
+
+  return { title, story, end, error };
 };
 MdToJson.propTypes = {
   data: PropTypes.string,
