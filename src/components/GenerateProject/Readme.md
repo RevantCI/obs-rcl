@@ -21,7 +21,6 @@ const downloadText = () => {
   const file = new Blob([stories[storyId - 1].story], { type: "text/plain" });
   element.href = URL.createObjectURL(file);
   element.download = storyId + ".md";
-  console.log("test")
   document.body.appendChild(element); // Required for this to work in FireFox
   element.click();
 };
