@@ -24,7 +24,8 @@ const MdToJson = (data) => {
           const imgUrl = line.match(/\((.*)\)/);
           story.push({
             id,
-            img: imgUrl[1],
+            url: imgUrl[1],
+            text: ""
           });
         } else {
           story[id - 1].text = line;
