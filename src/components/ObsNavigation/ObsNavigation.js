@@ -2,71 +2,87 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 const ObsNavigation = (props) => {
-  const { open, handleClose } = props;
+  const { value, onChange } = props;
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const navItems = [
     "Front",
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
-    25,
-    26,
-    27,
-    28,
-    29,
-    30,
-    31,
-    32,
-    33,
-    34,
-    35,
-    36,
-    37,
-    38,
-    39,
-    40,
-    41,
-    42,
-    43,
-    44,
-    45,
-    46,
-    47,
-    48,
-    49,
-    50,
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "31",
+    "32",
+    "33",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50",
     "Back",
   ];
 
   return (
     <>
+      <button
+        className="bg-blue-500 text-white w-32 h-15 active:bg-blue-600 px-6 py-3 shadow hover:shadow-lg outline-none mr-1 mb-1"
+        type="button"
+        onClick={handleOpen}
+      >
+        {value}
+        <span></span>
+      </button>
       {open ? (
         <>
           <div className="flex items-center justify-center">
             <div className="w-8/12 max-w-md m-auto z-50 bg-black text-white shadow overflow-hidden sm:rounded-lg">
               <div className="flex flex-row justify-between text-center font-semibold text-xs tracking-wider uppercase">
                 <div className="grid grid-cols-1 w-full bg-blue-700">
-                  <div className="px-2 pt-2 bg-blue-700  cursor-pointer hover:bg-gray-700">
+                  <div className="px-2 pt-1 text-xl bg-blue-500  cursor-pointer">
                     OBS
                   </div>
                 </div>
@@ -76,12 +92,19 @@ const ObsNavigation = (props) => {
                   </button>
                 </div>
               </div>
-              <div className="grid py-5 grid-cols-10 gap-1 text-center bg-black text-white text-xs font-medium tracking-wide">
+              <div className="grid py-5 grid-cols-10 gap-2 mt-5 text-center bg-black text-white text-xs font-medium tracking-wide">
                 {navItems.map((item) => (
                   <button
-                    className="p-1 rounded-md hover:bg-blue-700"
+                    className={`${
+                      item === value ? "bg-blue-700" : ""
+                    } p-1 rounded-md hover:bg-blue-500`}
                     type="button"
                     key={item}
+                    value={value}
+                    onClick={() => {
+                      onChange(item);
+                      handleClose();
+                    }}
                   >
                     {item}
                   </button>
@@ -95,6 +118,7 @@ const ObsNavigation = (props) => {
   );
 };
 ObsNavigation.propTypes = {
-  // data: PropTypes.object,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 };
 export default ObsNavigation;
